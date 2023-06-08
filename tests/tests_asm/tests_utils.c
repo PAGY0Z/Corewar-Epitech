@@ -1,0 +1,262 @@
+/*
+** EPITECH PROJECT, 2023
+** B-CPE-200-RUN-2-1-corewar-pierre-alexandre.grosset
+** File description:
+** tests_utils
+*/
+
+#include "tests_include_header.h"
+
+#define IS_LABEL_VALID_CHAR(c) ((c == '_' || IS_LOWER(c) || IS_NUM(c)))
+
+Test(is_label, tests_is_label, .init=redirect, .timeout=1) {
+    cr_assert_eq(is_label(NULL), false);
+    cr_assert_eq(is_label(""), false);
+    cr_assert_eq(is_label("d"), false);
+    cr_assert_eq(is_label("d?"), false);
+    cr_assert_eq(is_label("|:"), false);
+    cr_assert_eq(is_label("^:"), false);
+    cr_assert_eq(is_label("::"), false);
+    cr_assert_eq(is_label(".:"), false);
+    cr_assert_eq(is_label("42fake_label:"), true);
+    cr_assert_eq(is_label("live:"), true);
+}
+
+Test(is_name_line, tests_is_name_line, .init=redirect, .timeout=1) {
+    cr_assert_eq(is_name_line(NULL), false);
+    cr_assert_eq(is_name_line(""), false);
+    cr_assert_eq(is_name_line(".name"), false);
+    cr_assert_eq(is_name_line("  \t "), false);
+    cr_assert_eq(is_name_line("   .hello"), false);
+    cr_assert_eq(is_name_line("   .name"), false);
+    cr_assert_eq(is_name_line("   .name \t "), false);
+    cr_assert_eq(is_name_line("   .name\""), false);
+    cr_assert_eq(is_name_line("   .name \""), false);
+    cr_assert_eq(is_name_line("   .name \"Hello World"), false);
+    cr_assert_eq(is_name_line("   .name \"Hello World\""), true);
+    cr_assert_eq(is_name_line("   .name \"Hello World\"  \t   "), true);
+    cr_assert_eq(is_name_line("   .name \"Hello World\"  \t   #"), false);
+    cr_assert_eq(is_name_line("   .name \"012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789\"  \t   "), false);
+}
+
+Test(is_comment_line, tests_is_comment_line, .init=redirect, .timeout=1) {
+    cr_assert_eq(is_comment_line(NULL), false);
+    cr_assert_eq(is_comment_line(""), false);
+    cr_assert_eq(is_comment_line(".comment"), false);
+    cr_assert_eq(is_comment_line("  \t "), false);
+    cr_assert_eq(is_comment_line("   .hello"), false);
+    cr_assert_eq(is_comment_line("   .comment"), false);
+    cr_assert_eq(is_comment_line("   .comment \t "), false);
+    cr_assert_eq(is_comment_line("   .comment\""), false);
+    cr_assert_eq(is_comment_line("   .comment \""), false);
+    cr_assert_eq(is_comment_line("   .comment \"Hello World"), false);
+    cr_assert_eq(is_comment_line("   .comment \"Hello World\""), true);
+    cr_assert_eq(is_comment_line("   .comment \"Hello World\"  \t   "), true);
+    cr_assert_eq(is_comment_line("   .comment \"Hello World\"  \t   #"), false);
+    cr_assert_eq(is_comment_line("   .comment \"012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789\"  \t   "), false);
+}
+
+Test(add_register, tests_add_register, .init=redirect, .timeout=1) {
+    asm_t *asm_s = malloc(sizeof(asm_t));
+    asm_s->buffer = malloc(sizeof(char));
+    asm_s->buffer[0] = '\0';
+    asm_s->index = 0;
+    cr_assert_eq(add_register(asm_s, NULL), false);
+    cr_assert_eq(add_register(asm_s, ""), false);
+    cr_assert_eq(add_register(asm_s, "r1"), true);
+    cr_assert_eq(add_register(asm_s, "r2"), true);
+    cr_assert_eq(add_register(asm_s, "r3"), true);
+    cr_assert_eq(add_register(asm_s, "r4"), true);
+    cr_assert_eq(add_register(asm_s, "r5"), true);
+    cr_assert_eq(add_register(asm_s, "r6"), true);
+    cr_assert_eq(add_register(asm_s, "r7"), true);
+    cr_assert_eq(add_register(asm_s, "r8"), true);
+    cr_assert_eq(add_register(asm_s, "r9"), true);
+    cr_assert_eq(add_register(asm_s, "r10"), true);
+    cr_assert_eq(add_register(asm_s, "r11"), true);
+    cr_assert_eq(add_register(asm_s, "r12"), true);
+    cr_assert_eq(add_register(asm_s, "r13"), true);
+    cr_assert_eq(add_register(asm_s, "r14"), true);
+    cr_assert_eq(add_register(asm_s, "r15"), true);
+    cr_assert_eq(add_register(asm_s, "r16"), true);
+    cr_assert_eq(add_register(asm_s, "Hello World"), false);
+    cr_assert_eq(asm_s->index, 16);
+    cr_assert_str_eq(asm_s->buffer, "\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10");
+}
+
+Test(clean_array_from_comments, tests_clean_array_from_comments, .init=redirect, .timeout=1) {
+    char **array = malloc(sizeof(char *) * 4);
+    array[0] = my_strdup("Hello World#tests", 1);
+    array[1] = my_strdup("Hello#World", 1);
+    array[2] = my_strdup("#Hello World", 1);
+    array[3] = NULL;
+    cr_assert_eq(clean_array_from_comments(NULL), false);
+    cr_assert_eq(clean_array_from_comments(array), true);
+    cr_assert_str_eq(array[0], "Hello World");
+    cr_assert_str_eq(array[1], "Hello");
+    cr_assert_str_eq(array[2], "");
+    cr_assert_eq(array[3], NULL);
+}
+
+Test(add_byte_to_buffer, tests_add_byte_to_buffer, .init=redirect, .timeout=1) {
+    asm_t *asm_struct = malloc(sizeof(asm_t));
+    asm_struct->buffer = malloc(sizeof(char));
+    asm_struct->buffer[0] = '\0';
+    asm_struct->index = 0;
+
+    asm_t *asm_struct2 = malloc(sizeof(asm_t));
+    asm_struct2->buffer = malloc(sizeof(char));
+    asm_struct2->buffer[0] = '\0';
+    asm_struct2->index = -42;
+
+    cr_assert_eq(add_byte_to_buffer(asm_struct2, 0x01), false);
+
+    cr_assert_eq(add_byte_to_buffer(asm_struct, 0x01), true);
+    cr_assert_eq(asm_struct->buffer[0], 0x01);
+    cr_assert_eq(asm_struct->index, 1);
+    cr_assert_eq(add_byte_to_buffer(asm_struct, 0x02), true);
+    cr_assert_eq(asm_struct->buffer[0], 0x01);
+    cr_assert_eq(asm_struct->buffer[1], 0x02);
+    cr_assert_eq(asm_struct->index, 2);
+}
+
+Test(add_bytes_to_buffer, tests_add_bytes_to_buffer, .init=redirect, .timeout=1) {
+    asm_t *asm_struct = malloc(sizeof(asm_t));
+    asm_struct->buffer = malloc(sizeof(char));
+    asm_struct->buffer[0] = '\0';
+    asm_struct->index = 0;
+    byte_t bytes1[2] = {0x01, 0x02};
+    byte_t bytes2[3] = {0x03, 0x04, 0x05};
+
+    asm_t *asm_struct2 = malloc(sizeof(asm_t));
+    asm_struct2->buffer = malloc(sizeof(char));
+    asm_struct2->buffer[0] = '\0';
+    asm_struct2->index = -42;
+
+    cr_assert_eq(add_bytes_to_buffer(asm_struct2, bytes1, 2), false);
+
+    cr_assert_eq(add_bytes_to_buffer(asm_struct, bytes1, 2), true);
+    cr_assert_eq(asm_struct->buffer[0], 0x01);
+    cr_assert_eq(asm_struct->buffer[1], 0x02);
+    cr_assert_eq(asm_struct->index, 2);
+    cr_assert_eq(add_bytes_to_buffer(asm_struct, bytes2, 3), true);
+    cr_assert_eq(asm_struct->buffer[0], 0x01);
+    cr_assert_eq(asm_struct->buffer[1], 0x02);
+    cr_assert_eq(asm_struct->buffer[2], 0x03);
+    cr_assert_eq(asm_struct->buffer[3], 0x04);
+    cr_assert_eq(asm_struct->buffer[4], 0x05);
+    cr_assert_eq(asm_struct->index, 5);
+}
+
+Test(is_registered_label, tests_is_registered_label, .init=redirect, .timeout=1) {
+    cr_assert_eq(is_registered_label(NULL, NULL), false);
+    cr_assert_eq(is_registered_label(NULL, ":"), false);
+    cr_assert_eq(is_registered_label(NULL, "Hello World"), false);
+    asm_t *asm_s = malloc(sizeof(asm_t));
+    asm_s->labels = malloc(sizeof(labels_t *) * 2);
+    asm_s->labels[0] = malloc(sizeof(labels_t));
+    asm_s->labels[0]->name = my_strdup("HelloWorld", 1);
+    asm_s->labels[1] = NULL;
+    cr_assert_eq(is_registered_label(asm_s, NULL), false);
+    cr_assert_eq(is_registered_label(asm_s, ":"), false);
+    char *str1 = my_strdup("HelloWorld:", 1);
+    char *str2 = my_strdup("Hello World", 1);
+    char *str3 = my_strdup("Hello World:", 1);
+    cr_assert_eq(is_registered_label(asm_s, str1), true);
+    cr_assert_str_eq(str1, "HelloWorld:");
+    cr_assert_eq(is_registered_label(asm_s, str2), false);
+    cr_assert_str_eq(str2, "Hello World");
+    cr_assert_eq(is_registered_label(asm_s, str3), false);
+    cr_assert_str_eq(str3, "Hello World:");
+}
+
+Test(update_label_address, tests_update_label_address, .init=redirect, .timeout=1) {
+    asm_t *asm_s = malloc(sizeof(asm_t));
+    asm_s->labels = malloc(sizeof(labels_t *) * 3);
+    asm_s->labels[0] = malloc(sizeof(labels_t));
+    asm_s->labels[0]->name = my_strdup("HelloWorld", 1);
+    asm_s->labels[0]->address = 0;
+    asm_s->labels[1] = malloc(sizeof(labels_t));
+    asm_s->labels[1]->name = my_strdup("HelloWorld2", 1);
+    asm_s->labels[1]->address = 0;
+    asm_s->index = FULL_HEADER_SIZE;
+    cr_assert_eq(update_label_address(NULL, "test"), false);
+    cr_assert_eq(update_label_address(asm_s, NULL), false);
+    cr_assert_eq(update_label_address(asm_s, "HelloWorldaena"), false);
+    cr_assert_eq(update_label_address(asm_s, "HelloWorld"), true);
+    cr_assert_eq(asm_s->labels[0]->address, 0);
+}
+
+Test(add_call_to_label, tests_add_call_to_label, .init=redirect, .timeout=1) {
+    asm_t *asm_s = malloc(sizeof(asm_t));
+    asm_s->buffer = malloc(sizeof(byte_t));
+    asm_s->buffer[0] = '\0';
+    asm_s->index = 0;
+    asm_s->labels = malloc(sizeof(labels_t *) * 2);
+    asm_s->labels[0] = NULL;
+    asm_s->labels[1] = NULL;
+    call_t call1 = {.callpos = 0, .cmdpos = 0, .size = 0};
+    call_t call2 = {.callpos = 0, .cmdpos = 0, .size = 0};
+    cr_assert_eq(add_call_to_label(asm_s, "USELESS", &call1), false);
+    asm_s->labels[0] = malloc(sizeof(labels_t));
+    asm_s->labels[0]->name = my_strdup("123", 1);
+    asm_s->labels[0]->address = 0;
+    cr_assert_eq(add_call_to_label(asm_s, "USELESS", &call2), false);
+    free(asm_s->labels[0]->name);
+    asm_s->labels[0]->name = my_strdup("USELESS", 1);
+    asm_s->labels[0]->callpos = NULL;
+    asm_s->labels[0]->callsize = NULL;
+    asm_s->labels[0]->cmdpos = NULL;
+    free(asm_s->buffer);
+    free(asm_s->labels[0]->callsize);
+    free(asm_s->labels[0]);
+    free(asm_s->labels);
+    free(asm_s);
+}
+
+Test(freen_labels, tests_freen_labels, .init=redirect, .timeout=1) {
+    //// test basic use
+    labels_t **labels = malloc(sizeof(labels_t*) * 2);
+    labels[0] = malloc(sizeof(labels_t));
+    labels[0]->name = my_strdup("USELESS", 1);
+    labels[0]->nbcalls = 1;
+    labels[0]->cmdpos = malloc(sizeof(int) * 2);
+    labels[0]->callsize = malloc(sizeof(int) * 2);
+    labels[0]->callpos = malloc(sizeof(int) * 2);
+    labels[1] = NULL;
+    freen_labels(labels, 1);
+    //// test if line 36
+    labels = malloc(sizeof(labels_t*) * 2);
+    labels[0] = malloc(sizeof(labels_t));
+    labels[0]->name = my_strdup("USELESS", 1);
+    labels[0]->nbcalls = 0;
+    labels[1] = NULL;
+    freen_labels(labels, 1);
+    //// test lables_len < n
+    labels = malloc(sizeof(labels_t*) * 2);
+    labels[0] = malloc(sizeof(labels_t));
+    labels[0]->name = my_strdup("USELESS", 1);
+    labels[0]->nbcalls = 1;
+    labels[0]->cmdpos = malloc(sizeof(int) * 2);
+    labels[0]->callsize = malloc(sizeof(int) * 2);
+    labels[0]->callpos = malloc(sizeof(int) * 2);
+    labels[1] = NULL;
+    freen_labels(labels, 8);
+    //// test labels_len > n
+    labels = malloc(sizeof(labels_t*) * 3);
+    labels[0] = malloc(sizeof(labels_t));
+    labels[0]->name = my_strdup("USELESS", 1);
+    labels[0]->nbcalls = 0;
+    labels[1] = malloc(sizeof(labels_t));
+    labels[1]->name = my_strdup("USELESS", 1);
+    labels[1]->nbcalls = 0;
+    freen_labels(labels, 1);
+}
+
+Test(is_registered_label2, tests_is_registered_label2, .init=redirect, .timeout=1) {
+    asm_t *asm_s = malloc(sizeof(asm_t));
+    char *line1 = "USELESS";
+    cr_assert_eq(is_registered_label2(NULL, line1), false);
+    cr_assert_eq(is_registered_label2(asm_s, NULL), false);
+    free(asm_s);
+}

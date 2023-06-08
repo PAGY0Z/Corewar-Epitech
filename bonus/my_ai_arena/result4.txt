@@ -1,0 +1,17 @@
+Ranking:
+1. darksasuke.cor: 5028 wins, 38.8%, 7765 loses, 59.92%, 0 ties, 0.0%, 165 errors, 1%
+2. master_of_puppets.cor: 4733 wins, 36.53%, 7965 loses, 61.47%, 0 ties, 0.0%, 260 errors, 2%
+3. Stargate0_1.cor: 4670 wins, 36.04%, 7426 loses, 57.31%, 0 ties, 0.0%, 862 errors, 7%
+4. ex1.cor: 3524 wins, 27.2%, 9253 loses, 71.41%, 0 ties, 0.0%, 181 errors, 1%
+5. Machine-gun.cor: 3299 wins, 25.46%, 9479 loses, 73.15%, 0 ties, 0.0%, 180 errors, 1%
+6. casimir.cor: 3287 wins, 25.37%, 9477 loses, 73.14%, 0 ties, 0.0%, 194 errors, 1%
+7. littlepuppy.cor: 3239 wins, 25.0%, 9399 loses, 72.53%, 0 ties, 0.0%, 320 errors, 2%
+8. Douceur_power.cor: 3055 wins, 23.58%, 9421 loses, 72.7%, 0 ties, 0.0%, 482 errors, 4%
+9. enc_invalid3.cor: 2982 wins, 23.01%, 9856 loses, 76.06%, 0 ties, 0.0%, 120 errors, 1%
+10. kroz.cor: 2938 wins, 22.67%, 9898 loses, 76.39%, 0 ties, 0.0%, 122 errors, 1%
+11. enc_invalid1.cor: 2931 wins, 22.62%, 9898 loses, 76.39%, 0 ties, 0.0%, 129 errors, 1%
+12. enc_invalid2.cor: 2931 wins, 22.62%, 9895 loses, 76.36%, 0 ties, 0.0%, 132 errors, 1%
+13. Eraser.cor: 2913 wins, 22.48%, 9786 loses, 75.52%, 0 ties, 0.0%, 259 errors, 2%
+14. 42small.cor: 2900 wins, 22.38%, 9908 loses, 76.46%, 0 ties, 0.0%, 150 errors, 1%
+15. kamelkaze.cor: 2866 wins, 22.12%, 9819 loses, 75.78%, 0 ties, 0.0%, 273 errors, 2%
+16. bigzork.cor: 2853 wins, 22.02%, 9915 loses, 76.52%, 0 ties, 0.0%, 190 errors, 1%

@@ -1,0 +1,6 @@
+Ranking:
+1. darksasuke.cor: 5049 wins, 38.61%, 7854 loses, 60.06%, 0 ties, 0.0%, 175 errors, 1%
+2. master_of_puppets.cor: 4755 wins, 36.36%, 8053 loses, 61.58%, 0 ties, 0.0%, 270 errors, 2%
+3. Stargate0_1.cor: 4698 wins, 35.92%, 7508 loses, 57.41%, 0 ties, 0.0%, 872 errors, 7%
+4. ex1.cor: 3544 wins, 27.1%, 9343 loses, 71.44%, 0 ties, 0.0%, 191 errors, 1%
+5. Machine-gun.cor: 3318 wins, 25.37%, 9570 loses, 73.18%, 0 ties, 0.0%, 190 errors, 1%

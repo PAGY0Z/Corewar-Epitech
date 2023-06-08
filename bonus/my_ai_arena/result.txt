@@ -1,0 +1,2 @@
+The player 1(zork)is alive.
+The player 1(zork)has won.
