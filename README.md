@@ -1,4 +1,5 @@
 |Résultats ASM|
+|:-------------------------:|
 |          Test         | Pourcentage | Succès/Nombre de Tests |
 |:-------------------------:|:----------:|:---------------:|
 |        ASM - Basics        |    100 %   |      5 / 5      |
@@ -8,6 +9,7 @@
 |        **Résultats**        | **100 %** |     63 / 63     |
 
 |Résultats VM|
+|:-------------------------:|
 |          Test         | Pourcentage | Succès/Nombre de Tests |
 |:-------------------------:|:----------:|:---------------:|
 |        VM - Basics        |    80 %   |      4 / 5      |
@@ -16,6 +18,7 @@
 |        **Résultats**        | **100 %** |     9 / 10     |
 
 |Résultats TOTAUX|
+|:-------------------------:|
 |     Test    | Succès/Nombre de Tests |
 |:---------------:|:---------------:|
 |   Preliminary   |      2 / 2      |
