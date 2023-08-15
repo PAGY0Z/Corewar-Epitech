@@ -1,0 +1,194 @@
+name: ASM Champion Compilation Reference Comparison
+
+
+env:
+  ASM_BINARY: ./asm/asm
+  DIFF_TEST_FILE: diff_test_result_file
+  ABEL_SRC_FILE: tests/asm_reference_binaries/champions/abel.s
+  ABEL_COR_FILE: abel.cor
+  ABEL_COR_REFERENCE: tests/asm_reference_binaries/champions/abel.cor
+  BILL_SRC_FILE: tests/asm_reference_binaries/champions/bill.s
+  BILL_COR_FILE: bill.cor
+  BILL_COR_REFERENCE: tests/asm_reference_binaries/champions/bill.cor
+  JON_SNOW_SRC_FILE: tests/asm_reference_binaries/champions/jon_snow.s
+  JON_SNOW_COR_FILE: jon_snow.cor
+  JON_SNOW_COR_REFERENCE: tests/asm_reference_binaries/champions/jon_snow.cor
+  LUKE_SRC_FILE: tests/asm_reference_binaries/champions/luke.s
+  LUKE_COR_FILE: luke.cor
+  LUKE_COR_REFERENCE: tests/asm_reference_binaries/champions/luke.cor
+  PDD_SRC_FILE: tests/asm_reference_binaries/champions/pdd.s
+  PDD_COR_FILE: pdd.cor
+  PDD_COR_REFERENCE: tests/asm_reference_binaries/champions/pdd.cor
+  TYRON_SRC_FILE: tests/asm_reference_binaries/champions/tyron.s
+  TYRON_COR_FILE: tyron.cor
+  TYRON_COR_REFERENCE: tests/asm_reference_binaries/champions/tyron.cor
+
+on:
+  push:
+    branches:
+      - main
+      - asm_branch
+      - corewar_branch
+  pull_request:
+    branches:
+      - main
+      - asm_branch
+      - corewar_branch
+  workflow_dispatch:
+
+jobs:
+  ABEL_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison ABEL Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $ABEL_SRC_FILE
+      - run: |
+          if [ ! -f $ABEL_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $ABEL_COR_FILE $ABEL_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+
+  BILL_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison BILL Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $BILL_SRC_FILE
+      - run: |
+          if [ ! -f $BILL_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $BILL_COR_FILE $BILL_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+
+  JON_SNOW_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison JON_SNOW Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $JON_SNOW_SRC_FILE
+      - run: |
+          if [ ! -f $JON_SNOW_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $JON_SNOW_COR_FILE $JON_SNOW_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+  
+  LUKE_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison LUKE Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $LUKE_SRC_FILE
+      - run: |
+          if [ ! -f $LUKE_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $LUKE_COR_FILE $LUKE_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+
+  PDD_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison PDD Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $PDD_SRC_FILE
+      - run: |
+          if [ ! -f $PDD_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $PDD_COR_FILE $PDD_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+
+  TYRON_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison TYRON Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $TYRON_SRC_FILE
+      - run: |
+          if [ ! -f $TYRON_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $TYRON_COR_FILE $TYRON_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi

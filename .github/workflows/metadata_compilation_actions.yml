@@ -1,0 +1,399 @@
+name: ASM Metadata Compilation Reference Comparison
+
+env:
+  ASM_BINARY: ./asm/asm
+  DIFF_TEST_FILE: diff_test_result_file
+  METADATA_VALID_00_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid00.s
+  METADATA_VALID_00_COR_FILE: metadata_valid00.cor
+  METADATA_VALID_00_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid00.cor
+  METADATA_VALID_01_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid01.s
+  METADATA_VALID_01_COR_FILE: metadata_valid01.cor
+  METADATA_VALID_01_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid01.cor
+  METADATA_VALID_02_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid02.s
+  METADATA_VALID_02_COR_FILE: metadata_valid02.cor
+  METADATA_VALID_02_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid02.cor
+  METADATA_VALID_03_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid03.s
+  METADATA_VALID_03_COR_FILE: metadata_valid03.cor
+  METADATA_VALID_03_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid03.cor
+  METADATA_VALID_04_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid04.s
+  METADATA_VALID_04_COR_FILE: metadata_valid04.cor
+  METADATA_VALID_04_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid04.cor
+  METADATA_VALID_05_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid05.s
+  METADATA_VALID_05_COR_FILE: metadata_valid05.cor
+  METADATA_VALID_05_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid05.cor
+  METADATA_VALID_06_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid06.s
+  METADATA_VALID_06_COR_FILE: metadata_valid06.cor
+  METADATA_VALID_06_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid06.cor
+  METADATA_VALID_07_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid07.s
+  METADATA_VALID_07_COR_FILE: metadata_valid07.cor
+  METADATA_VALID_07_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid07.cor
+  METADATA_VALID_08_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid08.s
+  METADATA_VALID_08_COR_FILE: metadata_valid08.cor
+  METADATA_VALID_08_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid08.cor
+  METADATA_VALID_09_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid09.s
+  METADATA_VALID_09_COR_FILE: metadata_valid09.cor
+  METADATA_VALID_09_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid09.cor
+  METADATA_VALID_10_SRC_FILE: tests/asm_reference_binaries/metadata_valids/metadata_valid10.s
+  METADATA_VALID_10_COR_FILE: metadata_valid10.cor
+  METADATA_VALID_10_COR_REFERENCE: tests/asm_reference_binaries/metadata_valids/metadata_valid10.cor
+  METADATA_INVALID_01_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid01.s
+  METADATA_INVALID_02_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid02.s
+  METADATA_INVALID_03_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid03.s
+  METADATA_INVALID_04_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid04.s
+  METADATA_INVALID_05_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid05.s
+  METADATA_INVALID_06_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid06.s
+  METADATA_INVALID_07_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid07.s
+  METADATA_INVALID_08_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid08.s
+  METADATA_INVALID_09_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid09.s
+  METADATA_INVALID_10_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid10.s
+  METADATA_INVALID_11_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid11.s
+  METADATA_INVALID_12_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid12.s
+  METADATA_INVALID_13_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid13.s
+  METADATA_INVALID_14_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid14.s
+  METADATA_INVALID_15_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid15.s
+  METADATA_INVALID_16_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid16.s
+  METADATA_INVALID_17_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid17.s
+  METADATA_INVALID_18_SRC_FILE: tests/asm_reference_binaries/metadata_invalids/metadata_invalid18.s
+
+on:
+  push:
+    branches:
+      - main
+      - asm_branch
+      - corewar_branch
+  pull_request:
+    branches:
+      - main
+      - asm_branch
+      - corewar_branch
+  workflow_dispatch:
+
+jobs:
+  METADATA_VALIDS_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison METADATA_VALIDS Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: $ASM_BINARY $METADATA_VALID_00_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_00_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_00_COR_FILE $METADATA_VALID_00_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_01_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_01_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_01_COR_FILE $METADATA_VALID_01_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_02_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_02_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_02_COR_FILE $METADATA_VALID_02_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_03_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_03_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_03_COR_FILE $METADATA_VALID_03_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_04_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_04_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_04_COR_FILE $METADATA_VALID_04_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_05_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_05_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_05_COR_FILE $METADATA_VALID_05_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_06_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_06_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_06_COR_FILE $METADATA_VALID_06_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_07_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_07_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_07_COR_FILE $METADATA_VALID_07_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_08_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_08_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_08_COR_FILE $METADATA_VALID_08_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_09_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_09_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_09_COR_FILE $METADATA_VALID_09_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+      - run: $ASM_BINARY $METADATA_VALID_10_SRC_FILE
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: |
+          if [ ! -f $METADATA_VALID_10_COR_FILE ]
+          then
+            exit 1
+          fi
+      - run: diff $METADATA_VALID_10_COR_FILE $METADATA_VALID_10_COR_REFERENCE > $DIFF_TEST_FILE
+      - run: |
+          if [ -s $DIFF_TEST_FILE ]
+            then
+              exit 1
+            fi
+
+  METADATA_INVALIDS_reference_comparison:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Comparison METADATA_INVALIDS Checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_00_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_01_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_02_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_03_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_04_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_05_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_06_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_07_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_08_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_09_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_10_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_11_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_12_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_13_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_14_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_15_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_16_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_17_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi
+      - run: ($ASM_BINARY $METADATA_INVALID_18_SRC_FILE && false) || exit $(($? - 84))
+      - run: |
+          if [ $? -ne 0 ] 
+          then
+            exit 1
+          fi

@@ -1,0 +1,72 @@
+name: Project Submission Actions Checker
+
+env:
+  COREWAR_BINARY: corewar/corewar
+  ASM_BINARY: asm/asm
+  UNIT_TEST_BINARY: unit_test
+
+on:
+  push:
+    branches:
+      - main
+      - asm_branch
+      - corewar_branch
+  pull_request:
+    branches:
+      - main
+      - asm_branch
+      - corewar_branch
+  workflow_dispatch:
+
+jobs:
+  check_coding_style:
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: Coding_style_checker
+        uses: actions/checkout@v3.4.0
+        with:
+          fetch-depth: 0
+      - run: check.sh $(pwd) $(pwd)
+      - run: cat coding-style-reports.log
+      - run: |
+          if [ -s coding-style-reports.log ]
+          then
+            echo "::group::Annotation"
+            input=coding-style-reports.log
+            while IFS= read -r line
+            do
+              echo "::error:: $line"
+            done < "$input"
+            exit 1
+          fi
+  
+  check_compilation:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Compilation_checker
+        uses: actions/checkout@v3.4.0
+      - run: make
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $CORECOREWAR_BINARY ] || [ ! -f $ASM_BINARY ]
+          then
+            exit 1
+          fi
+      - run: make fclean
+
+  check_tests:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: Tests_checker
+        uses: actions/checkout@v3.4.0
+      - run: make tests_run
+        timeout-minutes: 2
+      - run: |
+          if [ ! -f $UNIT_TEST_BINARY ]
+          then
+            exit 1
+          fi
+      - run: make fclean
