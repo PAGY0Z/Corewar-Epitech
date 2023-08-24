@@ -19,9 +19,11 @@ jobs:
       - name: Cleaning Folder
         run: |
           mv docs/dconfig .
+          mv docs/doxygen-ressources .
           rm -rf docs
           mkdir docs/
           mv dconfig docs/
+          mv doxygen-ressources/ docs/
 
       - name: Generate Doxygen Documentation
         run: |

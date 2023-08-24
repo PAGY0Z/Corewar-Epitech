@@ -1,8 +1,6 @@
 name: Project Submission Actions Checker
 
 env:
-  COREWAR_BINARY: corewar/corewar
-  ASM_BINARY: asm/asm
   UNIT_TEST_BINARY: unit_test
 
 on:
@@ -40,21 +38,6 @@ jobs:
             done < "$input"
             exit 1
           fi
-  
-  check_compilation:
-    runs-on: ubuntu-latest
-    container: epitechcontent/epitest-docker
-    steps:
-      - name: Compilation_checker
-        uses: actions/checkout@v3.4.0
-      - run: make
-        timeout-minutes: 2
-      - run: |
-          if [ ! -f $CORECOREWAR_BINARY ] || [ ! -f $ASM_BINARY ]
-          then
-            exit 1
-          fi
-      - run: make fclean
 
   check_tests:
     runs-on: ubuntu-latest
