@@ -9,6 +9,10 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -47,6 +51,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('d9/d4b/group__ASM__PARSING__FUNCTIONS_ga48f766c2c24200e430dafdaf008dff0d.html','../../'); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -61,33 +82,7 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS.html">ASM_PARSING_FUNCTIONS</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="contents">
-<table cellspacing="0" cellpadding="0" border="0">
-  <tr>
-   <td valign="top">
-      <div class="navtab">
-        <table>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_gabb595726bc6610e7599ee2557e5df0d4.html#gabb595726bc6610e7599ee2557e5df0d4">add_comment</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga7db2f64856a613c1154c8d4fa63dcb1e.html#ga7db2f64856a613c1154c8d4fa63dcb1e">add_comment_to_buffer</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga6a089db3b33e6c61f4fa6b938078fe66.html#ga6a089db3b33e6c61f4fa6b938078fe66">add_instruction</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga53b4bda770ffebcd9335ca29c8120af0.html#ga53b4bda770ffebcd9335ca29c8120af0">add_instructions</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga2c52207149b13aa1aad2e7817fcb2b94.html#ga2c52207149b13aa1aad2e7817fcb2b94">add_magic_number</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga9a16a12c3eb2a6ef1cc658325700dbb3.html#ga9a16a12c3eb2a6ef1cc658325700dbb3">add_name</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga6f5fc281c0aec0a532b19dba6cf68660.html#ga6f5fc281c0aec0a532b19dba6cf68660">add_name_to_buffer</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga9df0157f6bec943c5f7009a610e2b8f8.html#ga9df0157f6bec943c5f7009a610e2b8f8">exit_false_line_treatment</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_gac0d7394b4026acc361d97e07858dc916.html#gac0d7394b4026acc361d97e07858dc916">file_parsing</a></td></tr>
-          <tr><td class="navtabHL"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga48f766c2c24200e430dafdaf008dff0d.html#ga48f766c2c24200e430dafdaf008dff0d">line_treatment</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_ga3dfd07a90385d94e64c2a338489870da.html#ga3dfd07a90385d94e64c2a338489870da">replace_labels</a></td></tr>
-          <tr><td class="navtab"><a class="navtab" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS_gac06145153d08478f102f01ccff05501f.html#gac06145153d08478f102f01ccff05501f">replace_values_in_buffer</a></td></tr>
-        </table>
-      </div>
-   </td>
-   <td valign="top" class="mempage">
 <a id="ga48f766c2c24200e430dafdaf008dff0d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga48f766c2c24200e430dafdaf008dff0d">&#9670;&nbsp;</a></span>line_treatment()</h2>
 
@@ -168,13 +163,14 @@ Case 2 : The first word is not a registered label. </dd>
 </div><!-- fragment -->
 </div>
 </div>
-    </td>
-  </tr>
-</table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../d9/d4b/group__ASM__PARSING__FUNCTIONS.html">ASM_PARSING_FUNCTIONS</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>
