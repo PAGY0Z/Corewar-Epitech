@@ -16,10 +16,16 @@ jobs:
       - name: Set up Doxygen
         run: sudo apt-get update && sudo apt-get -y install doxygen
 
+      - name: Cleaning Folder
+        run: |
+          mv docs/dconfig .
+          rm -rf docs
+          mkdir docs/
+          mv dconfig docs/
+
       - name: Generate Doxygen Documentation
         run: |
-          cd docs
-          doxygen dconfig
+          doxygen docs/dconfig
 
       - name: Commit and Push Changes
         run: |
