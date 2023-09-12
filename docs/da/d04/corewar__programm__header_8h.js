@@ -6,7 +6,6 @@ var corewar__programm__header_8h =
     [ "CYCLE_TO_DIE", "de/d63/group__COREWARMACROS__DEFINES_ga185b5fb4b0b4371b9ef908ac34024d9b.html#ga185b5fb4b0b4371b9ef908ac34024d9b", null ],
     [ "DIR", "de/d63/group__COREWARMACROS__DEFINES_ga6c8de73bb604d91743c7f6f356eb171e.html#ga6c8de73bb604d91743c7f6f356eb171e", null ],
     [ "DIR_IDX", "de/d63/group__COREWARMACROS__DEFINES_gabd375ea3a5cf2e3803f9780b2095ace4.html#gabd375ea3a5cf2e3803f9780b2095ace4", null ],
-    [ "DIR_IDX", "de/d63/group__COREWARMACROS__DEFINES_gabd375ea3a5cf2e3803f9780b2095ace4.html#gabd375ea3a5cf2e3803f9780b2095ace4", null ],
     [ "EXT_ASM", "de/d63/group__COREWARMACROS__DEFINES_ga6f45fe58c1e1b4ccf34068bc60222f72.html#ga6f45fe58c1e1b4ccf34068bc60222f72", null ],
     [ "EXT_COR", "de/d63/group__COREWARMACROS__DEFINES_ga24a2b07341ac49f8fcacf1d1acf183ef.html#ga24a2b07341ac49f8fcacf1d1acf183ef", null ],
     [ "FULL_HEADER_SIZE", "de/d63/group__COREWARMACROS__DEFINES_gabd6129f8a41067e7ee67db4ad70f1301.html#gabd6129f8a41067e7ee67db4ad70f1301", null ],
