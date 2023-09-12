@@ -923,7 +923,6 @@
         {0,     0, 0, 0, 0, NULL, NULL},
     };
 
-    #define DIR_IDX 5
     #define IS_IDX(x) (x == DIR) ? DIR_IDX : REG
     ////////////////////////////////////////////////////////////////////////////
     /// @} END COREWAR_GLOBALS_ARRAYS
