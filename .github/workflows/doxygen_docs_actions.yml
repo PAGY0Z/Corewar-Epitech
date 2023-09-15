@@ -27,8 +27,19 @@ jobs:
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
 
-      - name: Commit and Push Changes
+      - name: Get Committer Data
+        run: |
+          COMMITTER_NAME=$(git log -1 --pretty=format:'%an')
+          COMMITTER_EMAIL=$(git log -1 --pretty=format:'%ae')
+  
+      - name: Commit Changes
         run: |
           git add docs/
-          git commit -m "${{ github.event.commits[0].message }} - Update documentation"
-          git push origin main
+          git commit -m "[Docs Update] - ${{ github.event.commits[0].message }}"
+
+      - name: Changing Commit logs
+        run: |
+          git commit --amend --author="$(COMMITTER_NAME) <$(COMMITTER_EMAIL)>"
+
+      - name: Push changes
+          git push --force origin main
