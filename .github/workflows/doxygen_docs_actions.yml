@@ -48,7 +48,7 @@ jobs:
         run: |
           echo ${{ steps.committer_data.outputs.name }}
           echo ${{ steps.committer_data.outputs.email }}
-          git commit --amend --author="${{ steps.committer_data.outputs.name }} <${{ steps.committer_data.outputs.email }}>"
+          git commit --amend --author="${{ steps.committer_data.outputs.name }} <${{ steps.committer_data.outputs.email }}>" -m "[Docs Update] - ${{ github.event.commits[0].message }}"
 
       - name: Push changes
         run: |
