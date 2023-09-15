@@ -28,10 +28,13 @@ jobs:
           git config --global user.email 'actions@github.com'
 
       - name: Get Committer Data
+        id: committer_data
         run: |
           COMMITTER_NAME=$(git log -1 --pretty=format:'%an')
           COMMITTER_EMAIL=$(git log -1 --pretty=format:'%ae')
-  
+          echo "::set-output name=name::$COMMITTER_NAME"
+          echo "::set-output name=email::$COMMITTER_EMAIL"
+
       - name: Commit Changes
         run: |
           git add docs/
@@ -39,10 +42,10 @@ jobs:
 
       - name: Changing Commit logs
         run: |
-          echo $COMMITTER_NAME
-          echo $COMMITTER_EMAIL
-          git commit --amend --author="$COMMITTER_NAME <$COMMITTER_EMAIL>"
+          echo ${{ steps.committer_data.outputs.name }}
+          echo ${{ steps.committer_data.outputs.email }}
+          git commit --amend --author="${{ steps.committer_data.outputs.name }} <${{ steps.committer_data.outputs.email }}>"
 
       - name: Push changes
         run: |
-          git push --force origin main
+          git push --force origin  main
