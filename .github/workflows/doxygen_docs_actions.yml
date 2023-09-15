@@ -21,6 +21,10 @@ jobs:
       - name: Generate Doxygen Documentation
         run: |
           doxygen docs/Doxyfile
+      
+      - name: Update timestamp file
+        run: |
+          date > docs/Timestamp
 
       - name: Set up Git
         run: |
