@@ -39,7 +39,7 @@ jobs:
 
       - name: Changing Commit logs
         run: |
-          git commit --amend --author="$(COMMITTER_NAME) <$(COMMITTER_EMAIL)>"
+          git commit --amend --author="$COMMITTER_NAME <$COMMITTER_EMAIL>"
 
       - name: Push changes
         run: |
