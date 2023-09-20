@@ -1,3 +1,6 @@
+[![Update Docs](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/doxygen_docs_actions.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/doxygen_docs_actions.yml)
+
+
 |          Test         | Pourcentage | Succès/Nombre de Tests |
 |:-------------------------:|:----------:|:---------------:|
 |        ASM - Basics        |    100 %   |      5 / 5      |
