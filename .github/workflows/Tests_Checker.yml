@@ -1,0 +1,31 @@
+name: Tests Checker
+
+env:
+  UNIT_TEST_BINARY: unit_test
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check_tests:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.4.0
+
+      - name: Run Tests
+        run: make tests_run
+        timeout-minutes: 2
+      
+      - name: Check Tests Binary
+        run: |
+          if [ ! -f $UNIT_TEST_BINARY ] then
+            echo "Unit Test Binary not found. Exiting with error."
+            exit 1
+          fi

@@ -1,0 +1,37 @@
+name: Coding Style Checker
+
+env:
+  CODING_STYLE_LOG_FILE: coding-style-reports.log
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check_coding_style:
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.4.0
+
+      - name: Check the coding style
+        run: check.sh $(pwd) $(pwd)
+        timeout-minutes: 2
+
+      - name: Check the coding style report
+        run: |
+          if [ -s $CODING_STYLE_LOG_FILE ]
+          then
+            echo "::group::Annotation"
+            input=$CODING_STYLE_LOG_FILE
+            while IFS= read -r line
+            do
+              echo "::error:: $line"
+            done < "$input"
+            exit 1
+          fi

@@ -1,0 +1,47 @@
+name: Update Docs
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+
+jobs:
+  update_docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.4.0
+
+      - name: Set up Doxygen
+        run: sudo apt-get install doxygen
+
+      - name: Generate Doxygen Documentation
+        run: |
+          doxygen docs/Doxyfile
+      
+      - name: Check git difference
+        run: |
+          if [ $(git diff) -eq 0 ]; then
+            echo "No Documentation changes. Exiting with error."
+            exit 0
+          fi
+
+      - name: Set up Git Credentials
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+
+      - name: Commit & Push Documentation
+        run: |
+          COMMITTER_NAME=$(git log -1 --pretty=format:'%an')
+          COMMITTER_EMAIL=$(git log -1 --pretty=format:'%ae')
+          COMMITTER_MESSAGE=$(git log -1 --pretty=format:'%s')
+          git add docs/
+          git commit -m "[Docs Update] - $COMMITTER_MESSAGE"
+          git commit --amend --author="$COMMITTER_NAME <$COMMITTER_EMAIL>" -m "[Docs Update] - $COMMITTER_MESSAGE"
+          git push --force origin  main

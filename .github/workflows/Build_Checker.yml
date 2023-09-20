@@ -1,0 +1,39 @@
+name: Build Checker
+
+env:
+  BINARY0: ./corewar/corewar
+  BINARY1: ./asm/asm
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check_build:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3.4.0
+
+      - name: Run Build
+        run: make re
+        timeout-minutes: 2
+      
+      - name: Check BINARY0 Binary
+        run: |
+          if [ ! -f $BINARY0 ] then
+            echo "$BINARY0 not found. Exiting with error."
+            exit 1
+          fi
+
+      - name: Check BINARY1 Binary
+        run: |
+          if [ ! -f $BINARY1 ] then
+            echo "$BINARY1 not found. Exiting with error."
+            exit 1
+          fi
