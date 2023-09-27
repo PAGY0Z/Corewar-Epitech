@@ -1,12 +1,4 @@
-[![Documentation Updated](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Update_Docs.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Update_Docs.yml)
-
-[![Documentation Online](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/pages/pages-build-deployment)
-
-[![Build](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Build_Checker.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Build_Checker.yml)
-
-[![Tests](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Tests_Checker.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Tests_Checker.yml)
-
-[![Coding Style](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Coding_Style_Checker.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Coding_Style_Checker.yml)
+[![Documentation Updated](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Update_Docs.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Update_Docs.yml) [![Documentation Online](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/pages/pages-build-deployment) [![Build](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Build_Checker.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Build_Checker.yml) [![Tests](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Tests_Checker.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Tests_Checker.yml) [![Coding Style](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Coding_Style_Checker.yml/badge.svg)](https://github.com/PAGY0Z/Corewar-Epitech/actions/workflows/Coding_Style_Checker.yml)
 
 
 |          Test         | Pourcentage | Succès/Nombre de Tests |
