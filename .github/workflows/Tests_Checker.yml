@@ -25,7 +25,7 @@ jobs:
       
       - name: Check Tests Binary
         run: |
-          if [ ! -f $UNIT_TEST_BINARY ] then
+          if [ ! -f $UNIT_TEST_BINARY ]; then
             echo "Unit Test Binary not found. Exiting with error."
             exit 1
           fi
