@@ -25,8 +25,7 @@ jobs:
 
       - name: Check the coding style report
         run: |
-          if [ -s $CODING_STYLE_LOG_FILE ]
-          then
+          if [ -s $CODING_STYLE_LOG_FILE ]; then
             echo "::group::Annotation"
             input=$CODING_STYLE_LOG_FILE
             while IFS= read -r line
