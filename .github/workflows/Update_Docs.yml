@@ -26,7 +26,8 @@ jobs:
       
       - name: Check git difference
         run: |
-          if [ $(git diff) -eq 0 ]; then
+          git diff > diff.txt
+          if [ -s diff.txt ]; then
             echo "No Documentation changes. Exiting with error."
             exit 0
           fi
