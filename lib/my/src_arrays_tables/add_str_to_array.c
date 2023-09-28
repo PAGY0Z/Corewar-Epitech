@@ -20,7 +20,7 @@ char **add_str_to_array(char **array, char *str, int *mall_vs);
 ////////////////////////////////////////////////////////////////////////////////
 /// \brief Add an str to an array.
 /// \param array The array to add the str to.
-/// \param int_array The str to add to the array.
+/// \param str The str to add to the array.
 /// \param mall_vs The values to multiply the mallocs by. Use 'MALL_VS'
 /// \return The new array with the str added.
 /// \warning Returns NULL if an error occurs.

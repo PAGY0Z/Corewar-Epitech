@@ -23,14 +23,6 @@ jobs:
       - name: Generate Doxygen Documentation
         run: |
           doxygen docs/Doxyfile
-      
-      - name: Check git difference
-        run: |
-          git diff > diff.txt
-          if [ -s diff.txt ]; then
-            echo "No Documentation changes. Exiting with error."
-            exit 0
-          fi
 
       - name: Set up Git Credentials
         run: |
@@ -39,10 +31,13 @@ jobs:
 
       - name: Commit & Push Documentation
         run: |
-          COMMITTER_NAME=$(git log -1 --pretty=format:'%an')
-          COMMITTER_EMAIL=$(git log -1 --pretty=format:'%ae')
-          COMMITTER_MESSAGE=$(git log -1 --pretty=format:'%s')
-          git add docs/
-          git commit -m "[Docs Update] - $COMMITTER_MESSAGE"
-          git commit --amend --author="$COMMITTER_NAME <$COMMITTER_EMAIL>" -m "[Docs Update] - $COMMITTER_MESSAGE"
-          git push --force origin  main
+          git diff > diff.txt
+          if [ -s diff.txt ]; then
+            COMMITTER_NAME=$(git log -1 --pretty=format:'%an')
+            COMMITTER_EMAIL=$(git log -1 --pretty=format:'%ae')
+            COMMITTER_MESSAGE=$(git log -1 --pretty=format:'%s')
+            git add docs/
+            git commit -m "[Docs Update] - $COMMITTER_MESSAGE"
+            git commit --amend --author="$COMMITTER_NAME <$COMMITTER_EMAIL>" -m "[Docs Update] - $COMMITTER_MESSAGE"
+            git push --force origin  main
+          fi
